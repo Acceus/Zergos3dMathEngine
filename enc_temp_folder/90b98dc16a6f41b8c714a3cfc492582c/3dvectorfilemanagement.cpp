@@ -397,8 +397,8 @@ void scale_3d_vector()
 	replace_3d_vector(vector_name + ":", uXuYuZ);
 
 	std::cout << "Your new scaled vector values are: " << "\n";
-	std::cout << "x: " << vec.x << "\n";
-	std::cout << "y: " << vec.y << "\n";
+	std::cout << "x: " << vec.x;
+	std::cout << "y: " << vec.y;
 	std::cout << "z: " << vec.z;
 	std::cout << "\n\n";
 

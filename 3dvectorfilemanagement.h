@@ -12,3 +12,4 @@ void replace_3d_vector(std::string vector_to_replace, std::string new_vector);
 void remove_3d_vector();
 void add_3d_vectors();
 void subtract_3d_vectors();
+void find_3d_vector_magnitude();

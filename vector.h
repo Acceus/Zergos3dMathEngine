@@ -15,6 +15,7 @@ namespace ZergosVectors
 		void scale_3d_vector(float scalar);
 		void add_3d_vector(ZergosVectors::Vector vec_to_add);
 		void subtract_3d_vector(ZergosVectors::Vector vec_to_subtract);
+		float find_3d_vector_magnitude();
 	};
 
 }

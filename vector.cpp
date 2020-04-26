@@ -1,5 +1,6 @@
 
 #include "vector.h"
+#include <cmath>
 
 //initialize vector to 0.0
 ZergosVectors::Vector::Vector()	
@@ -39,4 +40,9 @@ ZergosVectors::Vector::Vector(float uX, float uY, float uZ)
 	 x = x - vec_to_subtract.x;
 	 y = y - vec_to_subtract.y;
 	 z = z - vec_to_subtract.z;
+ }
+
+ float ZergosVectors::Vector::find_3d_vector_magnitude()
+ {
+	 return sqrt(x * x + y * y + z * z);
  }
