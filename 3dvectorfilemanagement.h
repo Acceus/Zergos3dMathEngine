@@ -13,3 +13,6 @@ void remove_3d_vector();
 void add_3d_vectors();
 void subtract_3d_vectors();
 void find_3d_vector_magnitude();
+void find_dot_product();
+void find_angle();
+void find_cross_product();

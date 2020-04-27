@@ -35,7 +35,6 @@ void split_file_vector(std::string vector_name)
 		if (line == vector_name + ":")
 		{
 			found_vector_name = 1;
-			std::cout << "\nFound vector: " << vector_name << "\n";
 			continue;
 		}
 
@@ -515,6 +514,7 @@ void add_3d_vectors()
 	std::cout << "\n\n";
 }
 
+//subtracts one 3d vector from another
 void subtract_3d_vectors()
 {
 	std::string vector1;
@@ -581,12 +581,12 @@ void subtract_3d_vectors()
 	std::cout << "\n\n";
 }
 
+//finds the magnitude of a vector
 void find_3d_vector_magnitude()
 {
 	std::string vector1;
 	std::string vector2;
 	int found_vector1 = 0;
-	std::string uXuYuZ;
 
 	create_file_vector();
 
@@ -616,4 +616,161 @@ void find_3d_vector_magnitude()
 	ZergosVectors::Vector vec1(stof(uX), stof(uY), stof(uZ));
 	
 	std::cout << "\n" << "The magnitude of " << vector1 << " is " << vec1.find_3d_vector_magnitude() << "\n\n";
+}
+
+//finds the dot product between two vectors
+void find_dot_product()
+{
+	std::string vector1;
+	std::string vector2;
+	int found_vector1 = 0;
+	int found_vector2 = 0;
+	int found_vectors = 0;
+
+	create_file_vector();
+
+	//get vector names and position in text file
+	while (found_vectors == 0)
+	{
+		std::cout << "Please enter the name of the vector you want to dot: ";
+		std::cin >> vector1;
+		std::cout << "Please enter the name of the vector you wish to dot with " << vector1 << ": ";
+		std::cin >> vector2;
+
+		for (int i = 0; i < file_vector.size(); ++i)
+		{
+			if (file_vector[i] == vector1 + ":")
+			{
+				found_vector1 = 1;
+			}
+			if (file_vector[i] == vector2 + ":")
+			{
+				found_vector2 = 1;
+			}
+			if (found_vector1 == 1 && found_vector2 == 1)
+			{
+				found_vectors = 1;
+			}
+		}
+
+		if (found_vectors == 0)
+		{
+			std::cout << "Please enter valid vector names" << "\n";
+		}
+	}
+
+	//get string representations of vector coordinates and create vector objects
+	split_file_vector(vector1);
+	ZergosVectors::Vector vec1(stof(uX), stof(uY), stof(uZ));
+	split_file_vector(vector2);
+	ZergosVectors::Vector vec2(stof(uX), stof(uY), stof(uZ));
+
+	std::cout << "\n" << "The dot product between " << vector1 << " and " << vector2 << " is: " << vec1.dot(vec2) << "\n\n";
+}
+
+//finds the angle between two vectors
+void find_angle()
+{
+	std::string vector1;
+	std::string vector2;
+	int found_vector1 = 0;
+	int found_vector2 = 0;
+	int found_vectors = 0;
+
+	create_file_vector();
+
+	//get vector names and position in text file
+	while (found_vectors == 0)
+	{
+		std::cout << "Please enter the name of the first vector: ";
+		std::cin >> vector1;
+		std::cout << "Please enter the name of the name of the second vector: ";
+		std::cin >> vector2;
+
+		for (int i = 0; i < file_vector.size(); ++i)
+		{
+			if (file_vector[i] == vector1 + ":")
+			{
+				found_vector1 = 1;
+			}
+			if (file_vector[i] == vector2 + ":")
+			{
+				found_vector2 = 1;
+			}
+			if (found_vector1 == 1 && found_vector2 == 1)
+			{
+				found_vectors = 1;
+			}
+		}
+
+		if (found_vectors == 0)
+		{
+			std::cout << "Please enter valid vector names" << "\n";
+		}
+	}
+
+	//get string representations of vector coordinates and create vector objects
+	split_file_vector(vector1);
+	ZergosVectors::Vector vec1(stof(uX), stof(uY), stof(uZ));
+	split_file_vector(vector2);
+	ZergosVectors::Vector vec2(stof(uX), stof(uY), stof(uZ));
+
+	std::cout << "\n" << "The angle between " << vector1 << " and " << vector2 << " is: " << vec1.angle_between(vec2) << " radians ";
+	std::cout << "or " << vec1.angle_between(vec2) * 57.2958 << " degrees" << "\n\n";
+}
+
+//finds cross product betwwen two vectors
+void find_cross_product()
+{
+	std::string vector1;
+	std::string vector2;
+	int found_vector1 = 0;
+	int found_vector2 = 0;
+	int found_vectors = 0;
+	std::string uXuYuZ;
+
+	create_file_vector();
+
+	//get vector names and position in text file
+	while (found_vectors == 0)
+	{
+		std::cout << "Please enter the name of the first vector: ";
+		std::cin >> vector1;
+		std::cout << "Please enter the name of the name of the second vector: ";
+		std::cin >> vector2;
+
+		for (int i = 0; i < file_vector.size(); ++i)
+		{
+			if (file_vector[i] == vector1 + ":")
+			{
+				found_vector1 = 1;
+			}
+			if (file_vector[i] == vector2 + ":")
+			{
+				found_vector2 = 1;
+			}
+			if (found_vector1 == 1 && found_vector2 == 1)
+			{
+				found_vectors = 1;
+			}
+		}
+
+		if (found_vectors == 0)
+		{
+			std::cout << "Please enter valid vector names" << "\n";
+		}
+	}
+
+	//get string representations of vector coordinates and create vector objects
+	split_file_vector(vector1);
+	ZergosVectors::Vector vec1(stof(uX), stof(uY), stof(uZ));
+	split_file_vector(vector2);
+	ZergosVectors::Vector vec2(stof(uX), stof(uY), stof(uZ));
+
+	ZergosVectors::Vector vec = vec1.cross(vec2);
+	
+	std::cout << "\n" << "The cross product between " << vector1 << " and " << vector2 << " is:" << "\n";
+	std::cout << "x: " << vec.x << "\n";
+	std::cout << "y: " << vec.y << "\n";
+	std::cout << "z: " << vec.z << "\n\n";
 }

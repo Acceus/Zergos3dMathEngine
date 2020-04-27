@@ -16,6 +16,9 @@ namespace ZergosVectors
 		void add_3d_vector(ZergosVectors::Vector vec_to_add);
 		void subtract_3d_vector(ZergosVectors::Vector vec_to_subtract);
 		float find_3d_vector_magnitude();
+		float dot(ZergosVectors::Vector vec);
+		float angle_between(ZergosVectors::Vector vec);
+		ZergosVectors::Vector cross(ZergosVectors::Vector vec);
 	};
 
 }
