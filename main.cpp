@@ -1,6 +1,6 @@
-#include "3dvectorfilemanagement.h"
 #include "menus.h"
-#include <iostream>
+#include "3dvectorfilemanagement.h"
+#include "vector.h"
 
 int main()
 {

@@ -16,3 +16,5 @@ void find_3d_vector_magnitude();
 void find_dot_product();
 void find_angle();
 void find_cross_product();
+void find_linear_dependence_2_vectors();
+void find_linear_dependence_3_vectors();

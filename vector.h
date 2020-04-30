@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 
 namespace ZergosVectors
 {
@@ -19,6 +20,8 @@ namespace ZergosVectors
 		float dot(ZergosVectors::Vector vec);
 		float angle_between(ZergosVectors::Vector vec);
 		ZergosVectors::Vector cross(ZergosVectors::Vector vec);
+		int find_dependence_2(ZergosVectors::Vector vec);
+		int find_dependence_3(ZergosVectors::Vector vec1, ZergosVectors::Vector vec2);
 	};
 
 }

@@ -46,7 +46,7 @@ void split_file_vector(std::string vector_name)
 			int change_coordinate = 0;
 			found_vector = 1;
 			//loop through line and place floats into string vector and locate floats by noticing space between them
-			for (int i = 0; i <= line.size(); ++i)
+			for (size_t i = 0; i <= line.size(); ++i)
 			{
 				if (line[i] == ' ')
 				{
@@ -99,7 +99,7 @@ void create_file_vector()
 void replace_3d_vector(std::string vector_to_replace, std::string new_vector)
 {
 	create_file_vector();
-	for (int i = 0; i < file_vector.size(); ++i)
+	for (size_t i = 0; i < file_vector.size(); ++i)
 	{
 		if (file_vector.at(i) == vector_to_replace)
 		{
@@ -113,7 +113,7 @@ void replace_3d_vector(std::string vector_to_replace, std::string new_vector)
 	file.close();
 	file.open("3dvectors.txt", std::ios_base::app);
 
-	for (int j = 0; j < file_vector.size(); ++j)
+	for (size_t j = 0; j < file_vector.size(); ++j)
 	{
 		file << file_vector[j] << "\n";
 	}
@@ -149,19 +149,21 @@ bool is_Number(std::string value)
 	bool has_character = 0;
 	int dot_at_end = 0;
 	
-	for (int i = 0; i < value.size(); ++i)
+	for (size_t i = 0; i < value.size(); ++i)
 	{
 		if (value[i] == '.')
 		{
 			++dot_count;
+			continue;
 		}
-
-		if (value[i] != '1' || value[i] != '2' || value[i] != '3' || value[i] != '4' || value[i] != '5' || value[i] != '6' || value[i] != '7' || value[i] != '8' || value[i] != '9')
+		
+		if (value[i] == '0' || value[i] == '1' || value[i] == '2' || value[i] == '3' || value[i] == '4' || value[i] == '5' || value[i] == '6' || value[i] == '7' || value[i] == '8' || value[i] == '9')
 		{
-			if (value[i] == '1' || value[i] == '2' || value[i] == '3' || value[i] == '4' || value[i] == '5' || value[i] == '6' || value[i] == '7' || value[i] == '8' || value[i] == '9')
-			{
-				continue;
-			}
+			continue;
+		}
+		
+		if (value[i] != '0' || value[i] != '1' || value[i] != '2' || value[i] != '3' || value[i] != '4' || value[i] != '5' || value[i] != '6' || value[i] != '7' || value[i] != '8' || value[i] != '9')
+		{
 			has_character = 1;
 		}
 	}
@@ -191,7 +193,7 @@ void create_3d_vector()
 		std::cout << "Enter name of vector: ";
 		std::cin >> vector_name;
 
-		for (int i = 0; i < file_vector.size(); ++i)
+		for (size_t i = 0; i < file_vector.size(); ++i)
 		{
 			if (file_vector[i] == vector_name + ":")
 			{
@@ -296,7 +298,7 @@ void show_3d_vectors()
 		{
 			
 			//loop through line string, capture required values and print them out to console
-			for (int i = 0; i < line.size(); ++i)
+			for (size_t i = 0; i < line.size(); ++i)
 			{
 				if (line[i] != ' ' && x_y_z_written == 0 && write_value == 0)
 				{
@@ -349,7 +351,7 @@ void scale_3d_vector()
 		std::cout << "Please enter the name of the vector you wish to scale: ";
 		std::cin >> vector_name;
 
-		for (int i = 0; i < file_vector.size(); ++i)
+		for (size_t i = 0; i < file_vector.size(); ++i)
 		{
 			if (file_vector[i] == vector_name + ":")
 			{
@@ -416,7 +418,7 @@ void remove_3d_vector()
 		std::cout << "What Vector would you like to remove: ";
 		std::cin >> vector_name;
 
-		for (int i = 0; i < file_vector.size(); ++i)
+		for (size_t i = 0; i < file_vector.size(); ++i)
 		{
 			if (file_vector[i] == vector_name + ":")
 			{
@@ -439,7 +441,7 @@ void remove_3d_vector()
 	file.close();
 	file.open("3dvectors.txt", std::ios_base::app);
 
-	for (int j = 0; j < file_vector.size(); ++j)
+	for (size_t j = 0; j < file_vector.size(); ++j)
 	{
 		file << file_vector[j] << "\n";
 	}
@@ -467,7 +469,7 @@ void add_3d_vectors()
 		std::cout << "Please enter the name of the vector you wish to add to " << vector1 << ": ";
 		std::cin >> vector2;
 
-		for (int i = 0; i < file_vector.size(); ++i)
+		for (size_t i = 0; i < file_vector.size(); ++i)
 		{
 			if (file_vector[i] == vector1 + ":")
 			{
@@ -534,7 +536,7 @@ void subtract_3d_vectors()
 		std::cout << "Please enter the name of the vector you wish to " << vector1 << ": ";
 		std::cin >> vector2;
 
-		for (int i = 0; i < file_vector.size(); ++i)
+		for (size_t i = 0; i < file_vector.size(); ++i)
 		{
 			if (file_vector[i] == vector1 + ":")
 			{
@@ -596,7 +598,7 @@ void find_3d_vector_magnitude()
 		std::cout << "Please enter the name of the vector you wish to normalize: ";
 		std::cin >> vector1;
 	
-		for (int i = 0; i < file_vector.size(); ++i)
+		for (size_t i = 0; i < file_vector.size(); ++i)
 		{
 			if (file_vector[i] == vector1 + ":")
 			{
@@ -637,7 +639,7 @@ void find_dot_product()
 		std::cout << "Please enter the name of the vector you wish to dot with " << vector1 << ": ";
 		std::cin >> vector2;
 
-		for (int i = 0; i < file_vector.size(); ++i)
+		for (size_t i = 0; i < file_vector.size(); ++i)
 		{
 			if (file_vector[i] == vector1 + ":")
 			{
@@ -687,7 +689,7 @@ void find_angle()
 		std::cout << "Please enter the name of the name of the second vector: ";
 		std::cin >> vector2;
 
-		for (int i = 0; i < file_vector.size(); ++i)
+		for (size_t i = 0; i < file_vector.size(); ++i)
 		{
 			if (file_vector[i] == vector1 + ":")
 			{
@@ -739,7 +741,7 @@ void find_cross_product()
 		std::cout << "Please enter the name of the name of the second vector: ";
 		std::cin >> vector2;
 
-		for (int i = 0; i < file_vector.size(); ++i)
+		for (size_t i = 0; i < file_vector.size(); ++i)
 		{
 			if (file_vector[i] == vector1 + ":")
 			{
@@ -773,4 +775,140 @@ void find_cross_product()
 	std::cout << "x: " << vec.x << "\n";
 	std::cout << "y: " << vec.y << "\n";
 	std::cout << "z: " << vec.z << "\n\n";
+}
+
+//find out if vectors are linearly independent or dependent
+void find_linear_dependence_2_vectors()
+{
+	std::string first_vector;
+	std::string second_vector;
+	int found_first_vector = 0;
+	int found_second_vector = 0;
+	create_file_vector();
+	
+	//Get names of vectors
+	while (true)
+	{
+		std::cout << "\n" << "Please enter the name of the first vector: ";
+		std::cin >> first_vector;
+		std::cout << "'\n";
+		std::cout << "Please enter the name of the second vector: ";
+		std::cin >> second_vector;
+		std::cout << "\n";
+
+		for (size_t i = 0; i < file_vector.size(); ++i)
+		{
+			if (file_vector[i] == first_vector + ":")
+			{
+				found_first_vector = 1;
+			}
+
+			if (file_vector[i] == second_vector + ":")
+			{
+				found_second_vector = 1;
+			}
+		}
+
+		if (found_first_vector == 1 && found_second_vector == 1)
+		{
+			break;
+		}
+
+		else
+		{
+			std::cout << "---Could not find one of the vectors specified---" << "\n";
+		}
+	}
+	//Convert vectors in file to a vector of floats
+	split_file_vector(first_vector);
+	ZergosVectors::Vector vec1(stof(uX), stof(uY), stof(uZ));
+	split_file_vector(second_vector);
+	ZergosVectors::Vector vec2(stof(uX), stof(uY), stof(uZ));
+
+	if (vec1.find_dependence_2(vec2) == 1)
+	{
+		std::cout << "Vectors are linearly dependent" << "\n\n";
+	}
+
+	if (vec1.find_dependence_2(vec2) == 0)
+	{
+		std::cout << "Vectors are linearly independent" << "\n\n";
+	}
+
+} 
+
+//find out if vectors are linearly independent or dependent
+void find_linear_dependence_3_vectors()
+{
+	std::string first_vector;
+	std::string second_vector;
+	std::string third_vector;
+	int found_first_vector = 0;
+	int found_second_vector = 0;
+	int found_third_vector = 0;
+	int linear_dependence;
+	create_file_vector();
+
+	//Get names of vectors
+	while (true)
+	{
+		std::cout << "\n" << "Please enter the name of the first vector: ";
+		std::cin >> first_vector;
+		std::cout << "'\n";
+		std::cout << "Please enter the name of the second vector: ";
+		std::cin >> second_vector;
+		std::cout << "\n";
+		std::cout << "Please enter the name of the third vector: ";
+		std::cin >> third_vector;
+		std::cout << "\n";
+
+		for (size_t i = 0; i < file_vector.size(); ++i)
+		{
+			if (file_vector[i] == first_vector + ":")
+			{
+				found_first_vector = 1;
+			}
+
+			if (file_vector[i] == second_vector + ":")
+			{
+				found_second_vector = 1;
+			}
+
+			if (file_vector[i] == third_vector + ":")
+			{
+				found_third_vector = 1;
+			}
+		}
+
+		if (found_first_vector == 1 && found_second_vector == 1 && found_third_vector == 1)
+		{
+			break;
+		}
+
+		else
+		{
+			std::cout << "---Could not find one of the vectors specified---" << "\n";
+		}
+	}
+
+	//Convert vectors in file to a vector of floats
+	split_file_vector(first_vector);
+	ZergosVectors::Vector vec1(stof(uX), stof(uY), stof(uZ));
+	split_file_vector(second_vector);
+	ZergosVectors::Vector vec2(stof(uX), stof(uY), stof(uZ));
+	split_file_vector(third_vector);
+	ZergosVectors::Vector vec3(stof(uX), stof(uY), stof(uZ));
+
+	linear_dependence = vec1.find_dependence_3(vec2, vec3);
+	if (linear_dependence == 0)
+	{
+		std::cout << "Vectors are linearly independent" << "\n\n";
+	}
+
+	else
+	{
+		std::cout << "Vectors are not linearly independent" << "\n\n";
+	}
+	
+	
 }

@@ -5,6 +5,8 @@
 
 void display_menu()
 {
+
+
 	std::cout << "Here is your selection of options:" << "\n";
 	std::cout << "1) Create a 3d vector" << "\n";
 	std::cout << "2) Show 3d Vectors" << "\n";
@@ -16,13 +18,13 @@ void display_menu()
 	std::cout << "8) Find dot product between two 3d vectors" << "\n";
 	std::cout << "9) Find the angle between two 3d vectors" << "\n";
 	std::cout << "10) Find the cross product between two 3d vectors" << "\n";
-	std::cout << "11) Display options" << "\n";
-	std::cout << "12) Exit" << "\n";
+	std::cout << "11) Find out if vectors are linearly independent" << "\n";
+	std::cout << "12) Display options" << "\n";
+	std::cout << "13) Exit" << "\n";
 }
 
 void vector_operations_3d()
 {
-	
 	display_menu();
 	
 	while (true)
@@ -35,7 +37,7 @@ void vector_operations_3d()
 			std::cout << "Enter option number here---> ";
 			std::cin >> selection;
 
-			if (selection == "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "10" || "11" || "12")
+			if (selection == "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9" || "10" || "11" || "12" || "13")
 			{
 				break;
 			}
@@ -54,8 +56,27 @@ void vector_operations_3d()
 		case 8: find_dot_product(); continue;
 		case 9: find_angle(); continue;
 		case 10: find_cross_product(); continue;
-		case 11: display_menu(); continue;
-		case 12: break;
+		case 11: 
+			int option; 
+			std::cout << "Are you wanting to check the dependence between 2 or 3 vectors?: ";
+			std::cin >> option;
+			std::cout << "\n";
+			if (option != 2 && option != 3)
+			{
+				std::cout << "---You didnt enter 2 or 3";
+				continue;
+			}
+			if (option == 2)
+			{
+				find_linear_dependence_2_vectors();
+			}
+			if (option == 3)
+			{
+				find_linear_dependence_3_vectors();
+			}
+			continue;
+		case 12: display_menu(); continue;
+		case 13: break;
 		}
 	}
 }
